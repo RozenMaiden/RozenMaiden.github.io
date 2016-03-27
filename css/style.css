@@ -9,8 +9,8 @@ p {margin: 0;}
 }
 /*星星闪烁*/
 *{margin:0px;padding:0px;}
-#dv1{width:1000px;height:600px;background:#0099FF;position: relative;}
-#dv1 span{width:16px;height:21px;position:absolute;background:url(images/star.png);}
+#home{width:1000px;height:600px;position: relative;}
+#home span{width:16px;height:21px;position:absolute;background:url(images/star.png);}
 html, body{
 	font-family: 'Roboto', sans-serif;
 	background:#fff;
