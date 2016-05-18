@@ -1,376 +1,260 @@
-<!--A Design by W3layouts
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>Free Blueasy Bootstrap Website Template | Home :: w3layouts</title>
-<link href="./css/bootstrap.css" rel='stylesheet' type='text/css' />
-<link href="./css/style.css" rel='stylesheet' type='text/css' />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href='http://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,800' rel='stylesheet' type='text/css'>
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<script src="./js/jquery-1.9.1.min.js"></script>
-<!--hover-effect-->
-<script src="./js/hover_pack.js"></script>
-<script type="text/javascript" src="./js/jquery.mixitup.min.js"></script>
+	<meta charset="UTF-8">
+	<title>真爱没有尽头</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection"content="telephone=no, email=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" /><!-- 删除苹果默认的工具栏和菜单栏 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" /><!-- 设置苹果工具栏颜色 -->
+    <meta name="format-detection" content="telphone=no, email=no" /><!-- 忽略页面中的数字识别为电话，忽略email识别 -->
+    <!-- 启用360浏览器的极速模式(webkit) -->
+    <meta name="renderer" content="webkit">
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+    <meta name="HandheldFriendly" content="true">
+    <!-- 微软的老式浏览器 -->
+    <meta name="MobileOptimized" content="320">
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 百度手机打开网页 无广告 -->
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <!-- 适应移动端end -->
+    <script type="text/javascript" src="jquery1.7.js"></script>
+    
+    
 	<script type="text/javascript">
-	$(function () {
-		
-		var filterList = {
-		
-			init: function () {
-			
-				// MixItUp plugin
-				// http://mixitup.io
-				$('#portfoliolist').mixitup({
-					targetSelector: '.portfolio',
-					filterSelector: '.filter',
-					effects: ['fade'],
-					easing: 'snap',
-					// call the hover effect
-					onMixEnd: filterList.hoverEffect()
-				});				
-			
-			},
-			
-			hoverEffect: function () {
-			
-				// Simple parallax effect
-				$('#portfoliolist .portfolio').hover(
-					function () {
-						$(this).find('.label').stop().animate({bottom: 0}, 200, 'easeOutQuad');
-						$(this).find('img').stop().animate({top: -30}, 500, 'easeOutQuad');				
-					},
-					function () {
-						$(this).find('.label').stop().animate({bottom: -40}, 200, 'easeInQuad');
-						$(this).find('img').stop().animate({top: 0}, 300, 'easeOutQuad');								
-					}		
-				);				
-			
-			}
-
-		};
-		
-		// Run the show!
-		filterList.init();
-		
-		
-	});	 
-	 var text = 20;
-	 for(i=0;i<text;i++){
-
-	 	var posL = Math.random()*$("#dv1").width()+"px";
- 		var posT = Math.random()*$("#dv1").height()+"px";
- 		$("#dv1").append("<span style=\' "+"left:"+posL+";top:"+posT+" \'></span>");
- 		one()
-	 }
-	 function one(){
-	 	 $("#dv1").find("span").animate({opacity:0},300,function(){
-	 	 	two()
-	 	 })
-	 }
-	 function two(){
-	 	$("#dv1").find("span").animate({opacity:0.7},100,function(){
-	 		one()
-	 	})
-	 }
-	</script>
+    
+//音乐资源
+        var myMusics = new Array(
+            {src:"齐晨 - 咱们结婚吧.mp3"},
+            {src:"曾春年 - 最幸福的人.mp3"},
+            {src:"崔子格 - 老婆最大.mp3"}
+        );  
+        //数组下标
+        var index = -1; 
+        //播放状态 单曲循环：0 列表循环：1 随机播放：2
+        var playState = 1;
+        //创建音乐列表
+        function createBox(){
+            var html="";
+            for(var i=0;i<myMusics.length;i++){
+                html+="<li>"+(i+1)+"  <a href='javascript:clickName("+i+");'>"+myMusics[i].title+"</a></li>"
+            }
+            return html
+        }
+        //页面加载      
+        $(document).ready(function(){
+            $("#"+"box").append(createBox());
+            playMusic(1);
+            
+            //按钮"下一首"单击事件
+            $("#nextMusic").click(function(){
+                playMusic(1,1);
+            });
+            //按钮"上一首"单击事件
+            $("#lastMusic").click(function(){
+                playMusic(2);
+            });
+            ////按钮"播放/暂停"单击事件
+            $("#playMusic").click(function(){
+                if($(this).val()=="播放"){
+                    $(this).val("暂停");
+                    document.getElementById("media").play();
+                }else if($(this).val()=="暂停"){
+                    $(this).val("播放");
+                    document.getElementById("media").pause();
+                }
+            });
+            
+            //快进
+            $("#fast").click(function(){
+                var media = document.getElementById("media");
+                media.currentTime+=5;
+            });
+            //快退
+            $("#rewind").click(function(){
+                var media = document.getElementById("media");
+                media.currentTime-=5;
+            });
+            //播放状态
+            $("#playState").change(function(){
+                playState = $(this).val();              
+            });
+            
+            $("li").mouseover(function(){
+                $(this).css("background-color","#F0F0F0");
+            });
+            
+            $("li").mouseout(function(){
+                $(this).css("background-color","#FFFFFF");
+                $($("li")[index]).css("background-color","#F0F0F0");
+            });
+            
+            
+        });
+        
+        //点击名字播放音乐
+        function clickName(i){
+            index=i;
+            playMusic(0);
+        }
+        
+        //音乐播放
+        function playMusic(s,n){
+            $("#playMusic").val("暂停");
+            if(s==0){//点击名字播放音乐
+            
+            }else if(s==1){//下一首
+                $("#playMusic").val("暂停");
+                if(playState==0){//单曲循环
+                    if(n==0){
+                    
+                    }else if(n==1){
+                        index++;
+                        if(index>=myMusics.length){
+                            index=0;
+                        }
+                    }
+                }else if(playState==1){//列表循环
+                    index++;
+                    if(index>=myMusics.length){
+                        index=0;
+                    }
+                }else if(playState==2){//随机播放
+                    index = Math.floor(Math.random()*myMusics.length);
+                }
+            }else if(s==2){//上一首
+                index--;
+                if(index<0){
+                    index=myMusics.length-1;
+                }
+            }
+            
+            
+            //修改audio资源路径
+            $("#media").attr("src",myMusics[index].src);
+            //音乐播放
+            $("#media").play;
+            //显示音乐名称
+            $("#musicTitle").text(myMusics[index].title);
+            $("title").text(myMusics[index].title);
+            //重置li列表背景色
+            $("#box").children("li").css("background-color","#FFFFFF");
+            $("#box").children("li").css("font-weight","normal");
+            
+            //修改播放音乐背景色
+            $($("#box").children("li")[index]).css("background-color","#F0F0F0");
+            $($("#box").children("li")[index]).css("font-weight","bold");
+            
+            $("#sliding").offset({left:60});
+        }
+        //时间获取
+        function timeupdate(){
+            //获取audio元素
+            var media = document.getElementById("media");
+            //音乐当前位置
+            var curr = Math.floor(media.currentTime);
+            //音乐长度
+            var dur = Math.floor(media.duration);
+            $("#totalTime").text("时长："+formatTime(dur));
+            $("#currTime").text("当前："+formatTime(curr));
+        }
+        //音乐计时格式
+        function formatTime(time){
+            
+            var h=0,i=0,s=parseInt(time);
+            if(s>60){
+                i=parseInt(s/60);
+                s=parseInt(s%60);
+                if(i > 60) {
+                    h=parseInt(i/60);
+                    i = parseInt(i%60);
+                }
+            }
+            var zero=function(v){
+                return (v>>0)<10?"0"+v:v;
+            };
+            return (zero(h)+":"+zero(i)+":"+zero(s));
+        };
+  </script>
+<style type="text/css">
+*{margin:0;padding:0;list-style-type:none;}
+a,img{border:0;}
+body{font:12px/180% Arial, Helvetica, sans-serif, "新宋体";
+background: url(./img/bg2.jpg);}
+#container{width:940px;margin:0px auto;}
+#container ul{width:300px;list-style:none;float:left;margin-right:20px;}
+#container ul li{padding: 10px 10px 15px;}
+#container ul li img{width:300px;border: 5px solid pink;}
+#ww{display: none;}
+</style>
 </head>
 <body>
-	<!--start header-->
-	<div class="header">
-	  <div class="header-top">
-		<div class="container">
-			<div class="logo">
-			  <a href="index.html"><img src="./images/logo.png" alt=""/></a>
-			</div>
-			<div class="menu">
-			  <a class="toggleMenu" href="#"><img src="./images/nav_icon.png" alt="" /></a>
-				<ul class="nav" id="nav">
-				   <li><a href="#home" class="scroll">Home</a></li>
-				   <li><a href="#services" class="scroll">Services</a></li>
-				   <li><a href="#features" class="scroll">Features</a></li>
-				   	<li><a href="#portfolio" class="scroll">Portfolio</a></li>
-				   <li><a href="#contact" class="scroll">Contact</a></li>								
-				   <div class="clear"></div>
-			    </ul>
-			</div>							
-	        <div class="clear"></div>
-	        <script type="text/javascript" src="./js/responsive-nav.js"></script>
-			<script type="text/javascript" src="./js/move-top.js"></script>
-			<script type="text/javascript" src="./js/easing.js"></script>
-			   <script type="text/javascript">
-					jQuery(document).ready(function($) {
-						$(".scroll").click(function(event){		
-							event.preventDefault();
-							$('html,body').animate({scrollTop:$(this.hash).offset().top},1200);
-						});
-					});
-				</script>
-		   </div>
-		 </div>
-		 <div class="header-bottom" id="home">
-		   <h1>"I'm Looking forward to your visit.</h1>
-		   <h2>I'm Looking for things I've never seen before."</h2>
-		 </div>
-	</div>
-	<!--end header-->
-	<!--start services-->
-	<div class="services" id="services">
-		<div class="container">
-			<div class="row">
-				<h3 class="m_3">Services</h3>
-				<div class="m_4"><span class="bottom_line"> </span></div>
-				<div class="col-md-3 top_grid">
-					<i class="coffee"> </i>
-					<h3 class="m_1">Coffee</h3>
-					<p class="m_2">Lorem ipsum dolor sit amet adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat..</p>
-				</div>
-				<div class="col-md-3 top_grid">
-					<i class="instant"> </i>
-					<h3 class="m_1">Instant</h3>
-					<p class="m_2">Lorem ipsum dolor sit amet adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat..</p>
-				</div>
-				<div class="col-md-3 top_grid">
-					<i class="advisor"> </i>
-					<h3 class="m_1">Serious</h3>
-					<p class="m_2">Lorem ipsum dolor sit amet adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat..</p>
-				</div>
-				<div class="col-md-3 top_grid1">
-					<i class="frame"> </i>
-					<h3 class="m_1">Frame</h3>
-					<p class="m_2">Lorem ipsum dolor sit amet adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat..</p>
-				</div>
-			</div>
-		</div>
-	 </div>
-	 <!--end services-->
-	 <!--start portfolio-->
-	 <div class="Portfolio1" id="portfolio">
-		<div class="container"> 
-			    <div class="portfolio_top">
-					<div class="portfolio_left">
-					  <h3 class="m_5">Portfolio</h3>
-					  <div class="m_6"><span class="portfolio_line"> </span></div>
-					</div>
-					<ul id="filters" class="clearfix">
-						<li><span class="filter active" data-filter="app card icon logo web">All</span></li>
-						<li><span class="filter" data-filter="app">Panoramas</span></li>
-						<li><span class="filter" data-filter="card">Portraits</span></li>
-						<li><span class="filter" data-filter="icon">Macro</span></li>
-						<li><span class="filter" data-filter="logo">Journal</span></li>
-					</ul>
-				    <div class="clear"></div>
-			    </div>
-				<div id="portfoliolist">
-					<div class="portfolio app mix_all" data-cat="app" style="display: inline-block; opacity: 1;">
-						<div class="portfolio-wrapper">		
-							<a href="single.html" class="b-link-stripe b-animate-go  thickbox">
-						     <img src="./images/p1.jpg" /><div class="b-wrapper"><h2 class="b-animate b-from-left    b-delay03 "><img src="./images/plus.png" alt=""/></h2>
-						  	</div></a>
-						</div>
-					</div>				
-					<div class="portfolio app mix_all" data-cat="app" style="display: inline-block; opacity: 1;">
-						<div class="portfolio-wrapper">		
-							<a href="single.html" class="b-link-stripe b-animate-go  thickbox">
-						     <img src="./images/p2.jpg" /><div class="b-wrapper"><h2 class="b-animate b-from-left    b-delay03 "><img src="./images/plus.png" alt=""/></h2>
-						     </div></a>
-		                </div>
-					</div>		
-					<div class="portfolio card mix_all" data-cat="card" style="display: inline-block; opacity: 1;">
-						<div class="portfolio-wrapper">		
-							<a href="single.html" class="b-link-stripe b-animate-go  thickbox">
-						     <img src="./images/p3.jpg" /><div class="b-wrapper"><h2 class="b-animate b-from-left    b-delay03 "><img src="./images/plus.png" alt=""/></h2>
-						  </div></a>
-		                </div>
-					</div>				
-					<div class="portfolio card mix_all" data-cat="card" style="display: inline-block; opacity: 1;">
-						<div class="portfolio-wrapper">		
-							<a href="single.html" class="b-link-stripe b-animate-go  thickbox">
-						     <img src="./images/p4.jpg" /><div class="b-wrapper"><h2 class="b-animate b-from-left    b-delay03 "><img src="./images/plus.png" alt=""/></h2>
-						  	 </div></a>
-		                </div>
-					</div>	
-					<div class="portfolio icon mix_all" data-cat="icon" style="display: inline-block; opacity: 1;">
-						<div class="portfolio-wrapper">		
-							<a href="single.html" class="b-link-stripe b-animate-go  thickbox">
-						     <img src="./images/p5.jpg" /><div class="b-wrapper"><h2 class="b-animate b-from-left    b-delay03 "><img src="./images/plus.png" alt=""/></h2>
-						  	 </div></a>
-		                </div>
-					</div>			
-					<div class="portfolio icon mix_all" data-cat="icon" style="display: inline-block; opacity: 1;">
-						<div class="portfolio-wrapper">		
-							<a href="single.html" class="b-link-stripe b-animate-go  thickbox">
-						     <img src="./images/p6.jpg" /><div class="b-wrapper"><h2 class="b-animate b-from-left    b-delay03 "><img src="./images/plus.png" alt=""/></h2>
-						  	 </div></a>
-		                </div>
-					</div>	
-					<div class="portfolio logo mix_all" data-cat="logo" style="display: inline-block; opacity: 1;">
-						<div class="portfolio-wrapper">		
-							<a href="single.html" class="b-link-stripe b-animate-go  thickbox">
-						     <img src="./images/p7.jpg" /><div class="b-wrapper"><h2 class="b-animate b-from-left    b-delay03 "><img src="./images/plus.png" alt=""/></h2>
-						  	 </div></a>
-		                </div>
-					</div>	
-					<div class="portfolio logo mix_all" data-cat="logo" style="display: inline-block; opacity: 1;">
-						<div class="portfolio-wrapper">		
-							<a href="single.html" class="b-link-stripe b-animate-go  thickbox">
-						     <img src="./images/p8.jpg" /><div class="b-wrapper"><h2 class="b-animate b-from-left    b-delay03 "><img src="./images/plus.png" alt=""/></h2>
-						  	 </div></a>
-		                </div>
-					</div>																																							
-				</div>
-		  </div><!-- container -->
-	   </div>
-	   <!--end portfolio-->
-	   <!--start default-->
-	   <div class="default" id="features">
-	   	<div class="container">
-	   	  <div class="row">
-	   		<div class="col-md-6 default_top">
-	   			<h3 class="m_21">Just Default Section</h3>
-				<div class="m_22"><span class="default_line"> </span></div>
-				<p class="m_7">aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie </p>
-				<p class="m_7">aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie </p>
-				<div class="button"><a href="#">Visit Me</a></div>
-	   		</div>
-	   		<div class="col-md-6 video_player">
-	   			<iframe src="http://player.vimeo.com/video/1785993?color=ffffff" width="100%" height="350" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> <p><a href="http://vimeo.com/1785993"></a> <a href="http://vimeo.com/keithloutit"></a> <a href="https://vimeo.com"></a>.</p>
-	   		</div>
-	   	  </div>
-	   	</div>
-	   </div>
-	   <!--end default-->
-	   <!--start twitter-->
-	   <div class="twitter">
-	   	<div class="container">
-	   	  <div class="twitter_left">
-	   		<h3 class="m_21">Just Default Section</h3>
-				<div class="m_22"><span class="default_line"> </span></div>
-	   	  </div>
-	   	  <i class="icon_twitter"> </i>
-	   	  <div class="clear"></div>
-	   	  <p class="m_9">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-	   	</div>
-	  </div>
-	  <!--end twitter-->
-	  <!--start join-->
-	  <div class="join">
-	  	<div class="container">
-	  		<div class="row">
-	  			<h3 class="m_3">Who is Jphn Doe?</h3>
-				  <div class="m_4"><span class="bottom_line"> </span></div>
-	  			<div class="col-md-6 join_left">
-	  			  <p class="m_10">aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie </p>
-				  <p class="m_11">aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie </p>
-	  			</div>
-	  			<div class="col-md-6">
-	  			  <p class="m_10">aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie </p>
-	  			  <ul class="social">	
-					  <li class="twt"><a href="#"><span> </span></a></li>
-					  <li class="google"><a href="#"><span> </span></a></li>
-					  <li class="dribble"><a href="#"><span> </span></a></li>		
-					  <li class="coffee"><a href="#"><span> </span></a></li>
-				   </ul>
-			    </div>
-	  		</div>
-	  	</div>
-	  </div>
-	  <!--end join-->
-	  <!--start testimonials-->
-	  <div class="testimonials">
-	  	<div class="container">
-	  		<div class="portfolio_left">
-				<h3 class="m_5">Testimonials</h3>
-				<div class="m_6"><span class="portfolio_line"> </span></div>
-			</div>
-			<i class="quotation"> </i>
-			<div class="clear"> </div>
-			<p class="m_12">aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit</p>
-			<span class="m_13">-quis nostrud volutpat</span>
-	  	</div>
-	  </div>
-	  <!--end testimonials-->
-	  <!--start contact-->
-	  <div class="contact" id="contact">
-	  	<div class="container">
-	  		<div class="row">
-	  			<h3 class="m_3">Contact</h3>
-	  			<div class="m_4"><span class="bottom_line"> </span></div>
-				  <form method="post" action="contact-post.html">
-					<div class="col-md-6 commentform">
-					  <p class="comment-form-author"><label for="author">Name</label>
-						<input id="author" name="author" type="text" value="" size="30" aria-required="true">
-					  </p>
-					   <p><label for="author">Email</label>
-						<input id="author" name="author" type="text" value="" size="30" aria-required="true">
-					  </p>
-					</div>
-					<div class="col-md-6 commentform_desc">
-						<p class="m_13">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea.</p>
-	                   <div class="address">
-				         <p>500 Lorem Ipsum Dolor Sit,</p>
-						 <p>Phone:(00) 222 666 444</p>
-				   		<p>Fax: (000) 000 00 00 0</p>
-				 	 	<p>Email: <span>support[at]snow.com</span></p>
-				   		<p>Follow on: <span>Facebook</span>, <span>Twitter</span></p>
-				        </div>
-	                 </div>
-	                 <div class="clear"></div>
-	                 <div class="contactform_bottom">
-					   <span><label>Subject</label></span>
-					   <span><textarea name="userMsg"> </textarea></span>
-					   <input name="submit" type="submit" id="submit" value="Message">
-				     </div>
-				     <div class="col-md-6 commentform_desc1">
-						<p class="m_13">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea.</p>
-	                   <div class="address">
-				         <p>500 Lorem Ipsum Dolor Sit,</p>
-						 <p>Phone:(00) 222 666 444</p>
-				   		<p>Fax: (000) 000 00 00 0</p>
-				 	 	<p>Email: <span>support[at]snow.com</span></p>
-				   		<p>Follow on: <span>Facebook</span>, <span>Twitter</span></p>
-				        </div>
-	                 </div>
-					</form>
-			     </div>
-	  	   </div>
-	  </div>
-	  <div class="footer-bottom">
-	  	<div class="container">
-	  		<ul class="footer-nav">
-	  			<li><a href="#">Home</a></li> |
-	  			<li><a href="#">Services</a></li> |
-	  			<li><a href="#">Portfolio</a></li> |
-	  			<li><a href="#">Contact</a></li> 
-	  		</ul>
-	  		<div class="copy">
-			    <p>© 2014 Template by <a href="http://w3layouts.com" target="_blank">w3layouts</a></p>
-		    </div>
-		    <div class="clear"></div>
-	  	</div>
-	  </div>
-	  <!--end contact-->
-      <script type="text/javascript">
-			$(document).ready(function() {
-			
-				var defaults = {
-		  			containerID: 'toTop', // fading element id
-					containerHoverID: 'toTopHover', // fading element hover id
-					scrollSpeed: 1200,
-					easingType: 'linear' 
-		 		};
-				
-				
-				$().UItoTop({ easingType: 'easeOutQuart' });
-				
-			});
-		</script>
-        <a href="#" id="toTop" style="display: block;"><span id="toTopHover" style="opacity: 1;"></span></a>
+<div id="container">
+        
+    <ul class="col">
+        <li><img src="img/0.jpg"></li>
+        <li><img src="img/1.jpg"></li>
+        <li><img src="img/2.jpg"></li>
+        <li><img src="img/3.jpg"></li>
+        <li><img src="img/4.jpg"></li>
+        <li><img src="img/5.jpg"></li>
+        <li><img src="img/6.jpg"></li>
+        <li><img src="img/7.jpg"></li>
+        <li><img src="img/8.jpg"></li>
+        <li><img src="img/9.jpg"></li>
+        <li><img src="img/10.jpg"></li>
+        <li><img src="img/11.jpg"></li>
+        <li><img src="img/12.jpg"></li>
+        <li><img src="img/13.jpg"></li>
+        <li><img src="img/14.jpg"></li>
+        <li><img src="img/15.jpg"></li>
+        <li><img src="img/16.jpg"></li>
+        <li><img src="img/17.jpg"></li>
+        <li><img src="img/18.jpg"></li>
+        <li><img src="img/19.jpg"></li>
+</ul>
+    <ul class="col"></ul>
+    <ul class="col" style="margin-right:0"></ul>
+</div>
+<div id="ww">
+<audio id="media" src="" autoplay="autoplay" onended="playMusic(1,0)" ontimeupdate="timeupdate()" ></audio>
+        
+        <div style="float:left;margin-left:50px;width:450px;height:200px;">
+                <p id="musicTitle"></p>
+                <p id="currTime" >当前：00:00:00</p>
+                <p id="totalTime" >时长：00:00:00</p>
+                
+                <input id="lastMusic" type="button" value="上一首" />
+                <input id="rewind" type="button" value="<<" />
+                <input id="playMusic" type="button" value="暂停" />
+                <input id="fast" type="button" value=">>" />
+                <input id="nextMusic" type="button" value="下一首" />
+                <select id="playState">
+                    <option value="0">单曲循环</option>
+                    <option value="1" selected>列表循环</option>
+                    <option value="2">随机播放</option>
+                </select>
+                <ul id="box" style="border:1px solid black;padding:0px;height:300px;width:300px;overflow-y:auto;"></ul>
+        </div>
+</div>
+<script type="text/javascript" src="js.js"></script>
 </body>
 </html>
